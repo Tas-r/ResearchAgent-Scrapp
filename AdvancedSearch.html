@@ -1,0 +1,1155 @@
+<body>
+
+
+
+    <noscript>
+        <div class="no-script-banner" id="no-script-banner">
+            <div class="warning-message">
+                <div class="warning-message-text">
+                    This site needs JavaScript to work properly. Please enable it to take advantage of the complete set
+                    of features!
+                </div>
+            </div>
+        </div>
+    </noscript>
+
+    <div class="no-session-banner" id="no-session-banner" hidden="">
+        <div class="warning-message">
+            <div class="warning-message-text">
+                Clipboard, Search History, and several other advanced features are temporarily unavailable.
+            </div>
+            <button class="close-banner-button" title="Close Clipboard and Search History not available warning banner"
+                ref="linksrc=close_no_session_banner" aria-controls="no-session-banner"
+                aria-label="Close Clipboard and Search History not available warning banner" aria-expanded="true">
+            </button>
+        </div>
+    </div>
+
+
+
+    <a class="usa-skipnav" href="#advanced-search-page-container">
+        Skip to main page content
+    </a>
+
+    <!-- ========== BEGIN HEADER ========== -->
+    <section class="usa-banner">
+        <div class="usa-accordion">
+            <header class="usa-banner-header">
+                <div class="usa-grid usa-banner-inner">
+                    <img src="https://cdn.ncbi.nlm.nih.gov/coreutils/uswds/img/favicons/favicon-57.png" alt="U.S. flag">
+                    <p>An official website of the United States government</p>
+                    <button class="usa-accordion-button usa-banner-button" aria-expanded="false"
+                        aria-controls="gov-banner-top">
+                        <span class="usa-banner-button-text">Here's how you know</span>
+                    </button>
+                </div>
+            </header>
+            <div class="usa-banner-content usa-grid usa-accordion-content" id="gov-banner-top" aria-hidden="true">
+                <div class="usa-banner-guidance-gov usa-width-one-half">
+                    <img class="usa-banner-icon usa-media_block-img"
+                        src="https://cdn.ncbi.nlm.nih.gov/coreutils/uswds/img/icon-dot-gov.svg" alt="Dot gov">
+                    <div class="usa-media_block-body">
+                        <p>
+                            <strong>The .gov means it’s official.</strong>
+                            <br>
+                            Federal government websites often end in .gov or .mil. Before
+                            sharing sensitive information, make sure you’re on a federal
+                            government site.
+                        </p>
+                    </div>
+                </div>
+                <div class="usa-banner-guidance-ssl usa-width-one-half">
+                    <img class="usa-banner-icon usa-media_block-img"
+                        src="https://cdn.ncbi.nlm.nih.gov/coreutils/uswds/img/icon-https.svg" alt="Https">
+                    <div class="usa-media_block-body">
+                        <p>
+                            <strong>The site is secure.</strong>
+                            <br>
+                            The <strong>https://</strong> ensures that you are connecting to the
+                            official website and that any information you provide is encrypted
+                            and transmitted securely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="usa-overlay"></div>
+    <header class="ncbi-header" role="banner" data-section="Header">
+
+        <div class="usa-grid">
+            <div class="usa-width-one-whole">
+
+                <div class="ncbi-header__logo">
+                    <a href="https://www.ncbi.nlm.nih.gov/" class="logo" aria-label="NCBI Logo"
+                        data-ga-action="click_image" data-ga-label="NIH NLM Logo">
+                        <img src="https://cdn.ncbi.nlm.nih.gov/coreutils/nwds/img/logos/AgencyLogo.svg"
+                            alt="NIH NLM Logo">
+                    </a>
+                </div>
+
+                <div class="ncbi-header__account">
+                    <a id="account_login"
+                        href="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpubmed.ncbi.nlm.nih.gov%2Fadvanced%2F"
+                        class="usa-button header-button" style="" data-ga-action="open_menu"
+                        data-ga-label="account_menu">Log in</a>
+                    <button id="account_info" class="header-button" style="display:none" aria-controls="account_popup">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                        <span class="username desktop-only" aria-hidden="true" id="uname_short"></span>
+                        <span class="sr-only">Show account info</span>
+                    </button>
+                </div>
+
+                <div class="ncbi-popup-anchor">
+                    <div class="ncbi-popup account-popup" id="account_popup" aria-hidden="true">
+                        <div class="ncbi-popup-head">
+                            <button class="ncbi-close-button" data-ga-action="close_menu"
+                                data-ga-label="account_menu"><span class="fa fa-times"></span><span
+                                    class="usa-sr-only">Close</span></button>
+                            <h4>Account</h4>
+                        </div>
+                        <div class="account-user-info">
+                            Logged in as:<br>
+                            <b><span class="username" id="uname_long">username</span></b>
+                        </div>
+                        <div class="account-links">
+                            <ul class="usa-unstyled-list">
+                                <li><a id="account_myncbi" href="https://www.ncbi.nlm.nih.gov/myncbi/"
+                                        class="set-base-url" data-ga-action="click_menu_item"
+                                        data-ga-label="account_myncbi">Dashboard</a></li>
+                                <li><a id="account_pubs"
+                                        href="https://www.ncbi.nlm.nih.gov/myncbi/collections/bibliography/"
+                                        class="set-base-url" data-ga-action="click_menu_item"
+                                        data-ga-label="account_pubs">Publications</a></li>
+                                <li><a id="account_settings" href="https://www.ncbi.nlm.nih.gov/account/settings/"
+                                        class="set-base-url" data-ga-action="click_menu_item"
+                                        data-ga-label="account_settings">Account settings</a></li>
+                                <li><a id="account_logout"
+                                        href="https://www.ncbi.nlm.nih.gov/account/signout/?back_url=https%3A//pubmed.ncbi.nlm.nih.gov/advanced/"
+                                        class="set-base-url" data-ga-action="click_menu_item"
+                                        data-ga-label="account_logout">Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div role="navigation" aria-label="access keys">
+        <a id="nws_header_accesskey_0" href="https://www.ncbi.nlm.nih.gov/guide/browsers/#ncbi_accesskeys"
+            class="usa-sr-only" accesskey="0" tabindex="-1">Access keys</a>
+        <a id="nws_header_accesskey_1" href="https://www.ncbi.nlm.nih.gov" class="usa-sr-only" accesskey="1"
+            tabindex="-1">NCBI Homepage</a>
+        <a id="nws_header_accesskey_2" href="/myncbi/" class="set-base-url usa-sr-only" accesskey="2"
+            tabindex="-1">MyNCBI Homepage</a>
+        <a id="nws_header_accesskey_3" href="#maincontent" class="usa-sr-only" accesskey="3" tabindex="-1">Main
+            Content</a>
+        <a id="nws_header_accesskey_4" href="#" class="usa-sr-only" accesskey="4" tabindex="-1">Main Navigation</a>
+    </div>
+    <section data-section="Alerts">
+        <div class="ncbi-alerts-placeholder"></div>
+    </section>
+    <!-- ========== END HEADER ========== -->
+
+
+    <a id="maincontent" aria-label="Main page content below" role="navigation"></a>
+
+    <main class="search-page" id="advanced-search-page-container" style="outline: none;">
+        <input type="hidden" name="csrfmiddlewaretoken"
+            value="5tw4aAOnYJPBNIoOXpqUwIxntPrgyegzgNxj0N2qXKZ5XNu8cuhis81o75gF858t">
+        <form action="/" method="get" autocomplete="off" class="usa-search usa-search-big search-form" id="search-form">
+            <div class="inner-wrap">
+                <div class="adv-search-form-wrapper">
+                    <div class="adv-search-header">
+                        <h1 class="header">PubMed Advanced Search Builder</h1>
+                        <a class="pubmed-logo" href="/" aria-label="PubMed Home" data-ga-category="featured_link"
+                            data-ga-action="pubmed_logo">
+                            <img src="https://cdn.ncbi.nlm.nih.gov/pubmed/e4284ea2-e990-4f05-b666-02ad427fe2d8/core/images/pubmed-logo-blue.svg"
+                                alt="pubmed logo">
+                        </a>
+                    </div>
+                    <div class="user-guide-link-wrapper">
+                        <a href="/help/" class="search-input-link user-guide-link" data-ga-category="featured_link"
+                            data-ga-action="user_guide">
+                            User Guide
+                        </a>
+                    </div>
+                    <div class="applied-filters-message usa-alert usa-alert-slim usa-alert-success hidden">
+                        <div class="usa-alert-body">
+                            <div class="usa-alert-text">
+                                Filters applied: <span class="filters-titles-text"></span>. <a href="#"
+                                    class="clear-filters">Clear&nbsp;all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="term-builder-errors"></div>
+                    <div class="section-label term-builder-label">
+                        Add terms to the query box
+                    </div>
+                    <div class="term-builder-wrapper">
+                        <label class="usa-sr-only" for="id_term">
+                            Search Term:
+                        </label>
+                        <label class="usa-sr-only" for="field-selector">
+                            Field Selector:
+                        </label>
+                        <select id="field-selector" class="adv-search-field field-selector">
+                            <option value="Affiliation">Affiliation</option>
+                            <option value="All Fields" selected="selected">All Fields</option>
+                            <option value="Author">Author</option>
+                            <option value="Author - Corporate">Author - Corporate</option>
+                            <option value="Author - First">Author - First</option>
+                            <option value="Author - Identifier">Author - Identifier</option>
+                            <option value="Author - Last">Author - Last</option>
+                            <option value="Book">Book</option>
+                            <option value="Conflict of Interest Statements">Conflict of Interest Statements</option>
+                            <option value="Date - Completion">Date - Completion</option>
+                            <option value="Date - Create">Date - Create</option>
+                            <option value="Date - Entry">Date - Entry</option>
+                            <option value="Date - MeSH">Date - MeSH</option>
+                            <option value="Date - Modification">Date - Modification</option>
+                            <option value="Date - Publication">Date - Publication</option>
+                            <option value="EC/RN Number">EC/RN Number</option>
+                            <option value="Editor">Editor</option>
+                            <option value="Filter">Filter</option>
+                            <option value="Grants and Funding">Grants and Funding</option>
+                            <option value="ISBN">ISBN</option>
+                            <option value="Investigator">Investigator</option>
+                            <option value="Issue">Issue</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Language">Language</option>
+                            <option value="Location ID">Location ID</option>
+                            <option value="MeSH Major Topic">MeSH Major Topic</option>
+                            <option value="MeSH Subheading">MeSH Subheading</option>
+                            <option value="MeSH Terms">MeSH Terms</option>
+                            <option value="Other Term">Other Term</option>
+                            <option value="Pagination">Pagination</option>
+                            <option value="Pharmacological Action">Pharmacological Action</option>
+                            <option value="Publication Type">Publication Type</option>
+                            <option value="Publisher">Publisher</option>
+                            <option value="Secondary Source ID">Secondary Source ID</option>
+                            <option value="Subject - Personal Name">Subject - Personal Name</option>
+                            <option value="Supplementary Concept">Supplementary Concept</option>
+                            <option value="Text Word">Text Word</option>
+                            <option value="Title">Title</option>
+                            <option value="Title/Abstract">Title/Abstract</option>
+                            <option value="Transliterated Title">Transliterated Title</option>
+                            <option value="Volume">Volume</option>
+                        </select>
+                        <div role="search" class="adv-search-field search-input">
+                            <input type="search" id="id_term" placeholder="Enter a search term">
+                            <select id="index-selector" class="index-selector select2-hidden-accessible"
+                                multiple="multiple" tabindex="-1"></select>
+                            <label class="usa-sr-only" for="index-selector">Select indexed value</label>
+                            <a href="#" class="clear-btn" aria-label="Clear search input" title="Clear search input"
+                                role="button"></a>
+                        </div>
+                        <label class="usa-sr-only" for="start-date-input">
+                            Start Date:
+                        </label>
+                        <input id="start-date-input" type="text" class="adv-search-field start-date-input"
+                            placeholder="YYYY/MM/DD" aria-label="start date">
+                        <div class="adv-search-field date-to-label">to</div>
+                        <label class="usa-sr-only" for="end-date-input">
+                            End Date:
+                        </label>
+                        <input id="end-date-input" type="text" class="adv-search-field end-date-input" title=""
+                            placeholder="Present" aria-label="end date">
+                        <div class="button-wrapper term-builder-button-wrapper">
+                            <button type="submit" class="add-button" ref="linksrc=advanced_add_term_btn"
+                                data-pinger-ignore="">ADD</button>
+                            <div class="split-dropdown">
+                                <button id="add-arrow-button" type="button" class="add-arrow-button arrow-button"
+                                    title="Change the Boolean operator used when adding terms to the query box"
+                                    aria-controls="boolean-selector" aria-expanded="false"
+                                    data-pinger-ignore=""></button>
+                                <ul aria-label="Boolean Selector" id="boolean-selector"
+                                    class="split-dropdown-content boolean-selector" aria-hidden="true" tabindex="-1">
+                                    <li><a tabindex="-1" href="#" data-boolean-operator="AND"
+                                            class="boolean-selector-link">Add with AND</a></li>
+                                    <li><a tabindex="-1" href="#" data-boolean-operator="OR"
+                                            class="boolean-selector-link">Add with OR</a></li>
+                                    <li><a tabindex="-1" href="#" data-boolean-operator="NOT"
+                                            class="boolean-selector-link">Add with NOT</a></li>
+                                </ul>
+                            </div>
+                            <a href="#" class="show-index" title="Display list of indexed terms for the selected field"
+                                ref="linksrc=advanced_show_index_btn">Show Index</a>
+                        </div>
+                    </div>
+                    <div class="section-label">
+                        Query box
+                    </div>
+                    <div class="query-box-section-wrapper">
+                        <label class="usa-sr-only" for="query-box-input">
+                            Query box
+                        </label>
+                        <div class="query-box-wrapper">
+                            <textarea id="query-box-input" class="query-box-input" name="term"
+                                placeholder="Enter / edit your search query here"></textarea>
+                            <a class="clear-query-btn" title="Clear query box" role="button"
+                                aria-label="Clear query box"></a>
+                        </div>
+                        <div class="button-wrapper">
+                            <button type="submit" class="search-btn" data-ga-category="search"
+                                data-ga-action="search_button">
+                                <span class="text">
+                                    Search
+                                </span>
+                                <div class="dots-loading-indicator add-to-history-loading-indicator">
+                                    <div class="dot dot-1" style="background-color: white;"></div>
+                                    <div class="dot dot-2" style="background-color: white;"></div>
+                                    <div class="dot dot-3" style="background-color: white;"></div>
+                                </div>
+                            </button>
+                            <div class="split-dropdown">
+                                <button id="search-arrow-button" type="button" class="search-arrow-button arrow-button"
+                                    title="Toggle: Search / Add to History" aria-controls="search-selector"
+                                    aria-expanded="false" data-pinger-ignore=""></button>
+                                <ul id="search-selector" class="split-dropdown-content search-selector"
+                                    aria-hidden="true" tabindex="-1">
+                                    <li class="add-to-history-link-container link-container display">
+                                        <a tabindex="-1" href="#" class="search-selector-link add-to-history-link"
+                                            data-ga-category="adv_search" data-ga-action="add_to_history">
+                                            Add to History
+                                        </a>
+                                    </li>
+                                    <li class="search-link-container link-container">
+                                        <a tabindex="-1" href="#" class="search-selector-link search-link"
+                                            ref="linksrc=advanced_search_history_link">Search</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="query-box-errors"></div>
+                    <input type="hidden" name="sort">
+                </div>
+            </div>
+        </form>
+
+
+
+        <div id="saved-search-action-panel" class="saved-search-action-panel action-panel " aria-hidden="true"
+            data-saved-search-open-panel-enabled="false"
+            data-saved-search-open-panel-url-hash="#open-saved-search-panel">
+            <div class="inner-wrap">
+                <h2 class="action-panel-heading">
+                    Your saved search
+                </h2>
+
+                <form id="saved-search-action-panel-form"
+                    class="saved-search-action-panel-form action-panel-content action-form"
+                    data-create-saved-search-url="/create-saved-search/" data-try-search-terms-url="/try-search-term/"
+                    data-saved-search-root-url="https://www.ncbi.nlm.nih.gov/myncbi/searches/">
+
+                    <input type="hidden" name="csrfmiddlewaretoken"
+                        value="5tw4aAOnYJPBNIoOXpqUwIxntPrgyegzgNxj0N2qXKZ5XNu8cuhis81o75gF858t">
+
+                    <div class="action-panel-control-wrap">
+                        <label for="saved-search-name"
+                            class="action-panel-label saved-search-name-label required-field-asterisk">
+                            Name of saved search:
+                        </label>
+                        <input maxlength="200" type="text" name="saved-search-name" id="saved-search-name"
+                            class="saved-search-name" value="" required="" pattern="[^&quot;&amp;=&lt;&gt;\/]*"
+                            title="The following characters are not allowed in the Name field: &quot;&amp;=&lt;&gt;/">
+                    </div>
+
+                    <div class="action-panel-control-wrap">
+                        <label for="saved-search-term" class="action-panel-label required-field-asterisk">
+                            Search terms:
+                        </label>
+                        <textarea name="saved-search-term" id="saved-search-term" class="saved-search-term"
+                            required=""></textarea>
+                    </div>
+                    <div class="test-search-term-wrap">
+                        <a href="#" class="try-search-term">Test search terms</a>
+                    </div>
+                    <div class="choice-group action-panel-extra-margin-top">
+                        <span class="action-panel-label" id="fieldset-label">
+                            Would you like email updates of new search results?
+                        </span>
+                        <fieldset id="saved-search-alert" aria-describedby="fieldset-label">
+                            <legend class="usa-sr-only">Saved Search Alert Radio Buttons</legend>
+                            <ul class="radio-group-items">
+                                <li>
+                                    <input type="radio" id="saved-search-alert-yes" class="saved-search-alert-yes"
+                                        name="saved-search-alert" value="yes" checked="">
+                                    <label for="saved-search-alert-yes" class="action-panel-label">Yes</label>
+                                </li>
+                                <li>
+                                    <input aria-label="No radio input" type="radio" id="saved-search-alert-no"
+                                        class="saved-search-alert-no" name="saved-search-alert" value="no">
+                                    <label for="saved-search-alert-no" class="action-panel-label">No</label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </div>
+
+                    <div class="alert-schedule-wrap">
+                        <div class="action-panel-control-wrap">
+                            <label class="action-panel-label">
+                                Email:
+                            </label>
+                            <span aria-label="Email address" id="saved-search-email" class="action-panel-label"><span
+                                    class="action-panel-label-bold"></span> (<a class="myncbi-account-settings"
+                                    href="https://www.ncbi.nlm.nih.gov/account/settings/">change</a>)</span>
+                        </div>
+                        <div class="action-panel-control-wrap action-panel-extra-margin-top">
+                            <label for="saved-search-frequency" class="action-panel-label">
+                                Frequency:
+                            </label>
+                            <select id="saved-search-frequency" class="no-border-panel-selector saved-search-frequency">
+                                <option value="monthly">Monthly</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="daily">Daily</option>
+                            </select>
+                        </div>
+                        <div class="action-panel-control-wrap saved-search-monthly-additional">
+                            <label for="saved-search-monthly-on-day" class="action-panel-label">
+                                Which day?
+                            </label>
+                            <select id="saved-search-monthly-on-day" class="no-border-panel-selector">
+                                <option value="Sunday">The first Sunday</option>
+                                <option value="Monday">The first Monday</option>
+                                <option value="Tuesday">The first Tuesday</option>
+                                <option value="Wednesday">The first Wednesday</option>
+                                <option value="Thursday">The first Thursday</option>
+                                <option value="Friday">The first Friday</option>
+                                <option value="Saturday">The first Saturday</option>
+                                <option value="day">The first day</option>
+                                <option value="weekday">The first weekday</option>
+                            </select>
+                        </div>
+                        <div class="action-panel-control-wrap saved-search-weekly-additional" style="display: none;">
+                            <label for="saved-search-weekly-on-day" class="action-panel-label">
+                                Which day?
+                            </label>
+                            <select id="saved-search-weekly-on-day"
+                                class="no-border-panel-selector saved-search-weekly-on-day">
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+                        </div>
+                        <div class="action-panel-control-wrap">
+                            <label for="saved-search-report" class="action-panel-label">
+                                Report format:
+                            </label>
+                            <select id="saved-search-report" class="no-border-panel-selector saved-search-report">
+                                <option value="DocSum">Summary</option>
+                                <option value="DocSumText">Summary (text)</option>
+                                <option value="Abstract">Abstract</option>
+                                <option value="AbstractText">Abstract (text)</option>
+                                <option value="MEDLINE">PubMed</option>
+                            </select>
+                        </div>
+                        <div class="action-panel-control-wrap">
+                            <label for="saved-search-amount" class="action-panel-label">
+                                Send at most:
+                            </label>
+                            <select id="saved-search-amount" class="no-border-panel-selector saved-search-amount">
+                                <option value="1">1 item</option>
+                                <option value="5" selected="">5 items</option>
+                                <option value="10">10 items</option>
+                                <option value="20">20 items</option>
+                                <option value="50">50 items</option>
+                                <option value="100">100 items</option>
+                                <option value="200">200 items</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="saved-search-send-if-no-result"
+                                class="saved-search-send-if-no-result" name="saved-search-send-if-no-result">
+                            <label for="saved-search-send-if-no-result" class="action-panel-label smaller-checkbox">
+                                Send even when there aren't any new results
+                            </label>
+                        </div>
+                        <div class="action-panel-control-wrap option-text-in-email-wrap">
+                            <label for="saved-search-email-text" class="action-panel-label">
+                                Optional text in email:
+                            </label>
+                            <textarea name="saved-search-email-text" id="saved-search-email-text"
+                                class="saved-search-email-text"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="action-panel-actions">
+                        <button class="action-panel-submit" type="submit" data-loading-label="Saving..."
+                            data-ga-category="save_share" data-ga-action="alert" data-ga-label="save">
+                            Save
+                        </button>
+                        <button class="action-panel-cancel" aria-label="Close 'Your saved search' panel"
+                            ref="linksrc=close_saved_search_panel" aria-controls="saved-search-action-panel"
+                            aria-expanded="false" data-ga-category="save_share" data-ga-action="alert"
+                            data-ga-label="cancel">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="search-history search-form">
+            <div class="inner-wrap">
+                <h2 class="header-table-title">History and Search Details</h2>
+                <div class="empty-history">
+                    Your history is currently empty! As you use PubMed your recent searches will appear here.
+                </div>
+                <div class="table-button-container" style="display: flex;">
+                    <form id="download-history-form" class="download-history-form" action="/downloadHistory/"
+                        method="post">
+                        <input type="hidden" name="csrfmiddlewaretoken"
+                            value="5tw4aAOnYJPBNIoOXpqUwIxntPrgyegzgNxj0N2qXKZ5XNu8cuhis81o75gF858t">
+                        <button type="submit" id="download-history-button" class="history-table-button download-icon"
+                            aria-label="Download Search History Table" data-ga-category="adv_search"
+                            data-ga-action="download_table"
+                            title="Download a CSV file of your History and Search Details">Download</button>
+                    </form>
+                    <button type="button" id="delete-history-button" class="history-table-button trash-can-icon"
+                        aria-label="Delete Search History Table"
+                        title="Remove all searches from History and Search Details">Delete</button>
+                </div>
+                <div class="search-history-table-container" style="display: block;">
+                    <div id="search-history-table_wrapper" class="dataTables_wrapper no-footer">
+                        <table id="search-history-table"
+                            class="search-history-table hover row-border dataTable no-footer" tabindex="0"
+                            aria-label="Search history table"
+                            data-login-url-with-open-saved-search="https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpubmed.ncbi.nlm.nih.gov%2Fadvanced%2F%23open-saved-search-panel"
+                            role="grid" aria-describedby="search-history-table_info">
+
+                            <div class="dots-loading-indicator loading-indicator">
+                                <div class="dot dot-1"></div>
+                                <div class="dot dot-2"></div>
+                                <div class="dot dot-3"></div>
+                            </div>
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_disabled ref-number" rowspan="1" colspan="1" style="width: 3%;">
+                                        Search</th>
+                                    <th class="sorting_disabled dt-center history-actions" rowspan="1" colspan="1"
+                                        style="width: 8%;">Actions</th>
+                                    <th class="sorting_disabled dt-center more-details" rowspan="1" colspan="1"
+                                        style="width: 3%;">Details</th>
+                                    <th class="sorting_disabled dt-left query-data" rowspan="1" colspan="1"
+                                        style="width: 63%;">Query</th>
+                                    <th class="sorting_disabled dt-right results-count" rowspan="1" colspan="1"
+                                        style="width: 15%;">Results</th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 8%;">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" class="odd">
+                                    <td class=" ref-number">#2</td>
+                                    <td class="dt-center history-actions dropdown-block">
+                                        <div class="dropdown-block add-actions-block">
+                                            <button class="ellipsis-icon-button trigger"
+                                                title="Show more actions using this query"
+                                                data-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;"
+                                                aria-label="Show query actions" aria-haspopup="true"
+                                                data-pinger-ignore="true"></button>
+                                            <div class="dropdown dropdown-container actions-dropdown-container">
+                                                <button class="add-without-boolean action-menu-item"
+                                                    data-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;"
+                                                    tabindex="0" data-pinger-ignore="true">Add query</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="AND"
+                                                    data-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;"
+                                                    tabindex="0" data-pinger-ignore="true" style="display: none;">Add
+                                                    with AND</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="OR"
+                                                    data-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;"
+                                                    tabindex="0" data-pinger-ignore="true" style="display: none;">Add
+                                                    with OR</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="NOT"
+                                                    data-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;"
+                                                    tabindex="0" data-pinger-ignore="true" style="display: none;">Add
+                                                    with NOT</button>
+                                                <button class="delete-history-item-link action-menu-item"
+                                                    data-time-stamp="1770572322.883595" tabindex="0"
+                                                    data-pinger-ignore="true">Delete</button>
+                                                <button class="save-ncbi-link action-menu-item" tabindex="0"
+                                                    data-filters-data=""
+                                                    data-expanded-query="&quot;older&quot;+&quot;alzheimer&quot;+&quot;factor analysis&quot;">Create
+                                                    alert</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class=" dt-center more-details">
+
+                                        <button class="down-arrow-button" title="Show search details for this query"
+                                            aria-label="Expands search details" data-pinger-ignore="true">
+                                        </button>
+                                    </td>
+                                    <td class=" dt-left query-data">
+                                        <div class="query-container" data-time-stamp="1770572322.883595">
+                                            <div class="search-query-wrapper has-query-details">
+                                                Search: <strong class="search-query">"older"+"alzheimer"+"factor
+                                                    analysis"</strong>
+
+
+                                            </div>
+                                            <div class="query-details">
+
+                                                <div class="entrez-query">
+                                                    ("older"[All Fields] AND "alzheimer"[All Fields]) AND "factor
+                                                    analysis"[All Fields]
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class=" dt-right results-count">
+                                        <a aria-label="Navigate to results for search query" class="history-table-link"
+                                            href="/?term=%22older%22%2B%22alzheimer%22%2B%22factor+analysis%22&amp;sort=relevance"
+                                            data-ga-category="search" data-ga-action="history_link">
+                                            153
+                                        </a>
+                                    </td>
+                                    <td>12:38:42</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td class=" ref-number">#1</td>
+                                    <td class="dt-center history-actions dropdown-block">
+                                        <div class="dropdown-block add-actions-block">
+                                            <button class="ellipsis-icon-button trigger"
+                                                title="Show more actions using this query"
+                                                data-query="older+alzheimer+factor analysis"
+                                                aria-label="Show query actions" aria-haspopup="true"
+                                                data-pinger-ignore="true"></button>
+                                            <div class="dropdown dropdown-container actions-dropdown-container">
+                                                <button class="add-without-boolean action-menu-item"
+                                                    data-query="older+alzheimer+factor analysis" tabindex="0"
+                                                    data-pinger-ignore="true">Add query</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="AND"
+                                                    data-query="older+alzheimer+factor analysis" tabindex="0"
+                                                    data-pinger-ignore="true" style="display: none;">Add with
+                                                    AND</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="OR"
+                                                    data-query="older+alzheimer+factor analysis" tabindex="0"
+                                                    data-pinger-ignore="true" style="display: none;">Add with
+                                                    OR</button>
+                                                <button class="add-with-boolean action-menu-item" data-operator="NOT"
+                                                    data-query="older+alzheimer+factor analysis" tabindex="0"
+                                                    data-pinger-ignore="true" style="display: none;">Add with
+                                                    NOT</button>
+                                                <button class="delete-history-item-link action-menu-item"
+                                                    data-time-stamp="1770572280.659188" tabindex="0"
+                                                    data-pinger-ignore="true">Delete</button>
+                                                <button class="save-ncbi-link action-menu-item" tabindex="0"
+                                                    data-filters-data=""
+                                                    data-expanded-query="older+alzheimer+factor analysis">Create
+                                                    alert</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class=" dt-center more-details">
+
+                                        <div class="error-icon"></div>
+
+                                        <button class="down-arrow-button" title="Show search details for this query"
+                                            aria-label="Expands search details" data-pinger-ignore="true">
+                                        </button>
+                                    </td>
+                                    <td class=" dt-left query-data">
+                                        <div class="query-container" data-time-stamp="1770572280.659188">
+                                            <div class="search-query-wrapper has-query-details">
+                                                Search: <strong class="search-query">older+alzheimer+factor
+                                                    analysis</strong>
+
+
+                                            </div>
+                                            <div class="query-details">
+
+                                                <div class="entrez-query">
+                                                    "analysis"[MeSH Subheading] OR "analysis"[All Fields]
+                                                </div>
+
+
+                                                <div class="query-translation">
+                                                    <div class="details-section-title"><strong>Translations</strong>
+                                                    </div>
+
+                                                    <div class="details-section-element"><strong
+                                                            class="term">analysis:</strong> "analysis"[Subheading] OR
+                                                        "analysis"[All Fields]</div>
+
+                                                </div>
+
+
+                                                <div class="parsed-query-errors">
+                                                    <div class="details-section-title"><strong>Warnings</strong></div>
+                                                    <div class="details-section-element query-with-errors"><span
+                                                            class="query-error">older+alzheimer+factor</span> analysis
+                                                    </div>
+
+
+
+
+                                                    <div class="details-section-element term-not-found">
+                                                        <strong>Term not found:</strong> older+alzheimer+factor
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class=" dt-right results-count">
+                                        <a aria-label="Navigate to results for search query" class="history-table-link"
+                                            href="/?term=older%2Balzheimer%2Bfactor+analysis&amp;sort=relevance"
+                                            data-ga-category="search" data-ga-action="history_link">
+                                            11,178,122
+                                        </a>
+                                    </td>
+                                    <td>12:38:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="search-history-table_info" role="status" aria-live="polite">
+                            Showing 1 to 2 of 2 entries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay" role="dialog" aria-label="Delete History Table Dialog">
+            <div class="dialog adv-search-dialog delete-history-table-dialog" role="document">
+                <div class="confirm-history-dialog-text">Your entire search history is about to be cleared.</div>
+                <button class="usa-button submit-button dialog-focus" data-ga-category="adv_search"
+                    data-ga-action="delete_table">Confirm</button>
+                <button class="close-overlay" data-pinger-ignore="true">[x]</button>
+            </div>
+        </div>
+        <div class="overlay" role="dialog" aria-label="Delete History Record Dialog">
+            <div class="dialog adv-search-dialog delete-history-record-dialog">
+                <div class="confirm-history-dialog-text">The search history record is about to be deleted.</div>
+                <button class="usa-button submit-button dialog-focus" data-ga-category="adv_search"
+                    data-ga-action="delete_table_row">Confirm</button>
+                <button class="close-overlay">[x]</button>
+            </div>
+        </div>
+        <div class="overlay" role="dialog" aria-label="Empty History Dialog">
+            <div class="dialog adv-search-dialog download-expired-history-dialog" role="document">
+                <div class="confirm-history-dialog-text">
+                    <p>No History items are available for download.</p>
+                    <p>History items expire after 8 hour of inactivity.</p>
+                    <p>Click 'Refresh' to clear items from the table,</p>
+                    <p>or click the 'X' to go back to the table.</p>
+                </div>
+                <button class="usa-button submit-button dialog-focus">Refresh</button>
+                <button class="close-overlay" data-pinger-ignore="true">[x]</button>
+            </div>
+        </div>
+        <div class="overlay" role="dialog" aria-label="Empty History Dialog">
+            <div class="dialog adv-search-dialog add-to-expired-history-dialog" role="document">
+                <div class="confirm-history-dialog-text">
+                    <p>The history table currently contains expired items.</p>
+                    <p>Clear expired items and add your new query?</p>
+                </div>
+                <button class="usa-button submit-button dialog-focus">Continue</button>
+                <button class="close-overlay" data-pinger-ignore="true">[x]</button>
+            </div>
+        </div>
+        <div class="overlay" role="dialog" aria-label="Empty History Dialog">
+            <div class="dialog adv-search-dialog delete-expired-history-dialog" role="document">
+                <div class="confirm-history-dialog-text">
+                    <p>No History items are available for deletion.</p>
+                    <p>History items expire after 8 hour of inactivity.</p>
+                    <p>Click 'Refresh' to clear items from the table,</p>
+                    <p>or click the 'X' to go back to the table.</p>
+                </div>
+                <button class="usa-button submit-button dialog-focus">Refresh</button>
+                <button class="close-overlay" data-pinger-ignore="true">[x]</button>
+            </div>
+        </div>
+    </main>
+
+
+    <div id="ncbi-footer">
+        <div class="literature-footer" role="complementary" title="Links to NCBI Literature Resources">
+            <div class="usa-grid">
+                <p class="literature-footer-text">NCBI Literature Resources</p>
+                <p class="literature-footer-text">
+                    <a class="literature-footer-link" data-ga-category="literature_resources" data-ga-action="mesh_link"
+                        href="https://www.ncbi.nlm.nih.gov/mesh/">MeSH</a>
+                    <a class="literature-footer-link" data-ga-category="literature_resources" data-ga-action="pmc_link"
+                        href="https://www.ncbi.nlm.nih.gov/pmc/">PMC</a>
+                    <a class="literature-footer-link" data-ga-category="literature_resources"
+                        data-ga-action="bookshelf_link" href="https://www.ncbi.nlm.nih.gov/books">Bookshelf</a>
+                    <a class="literature-footer-link" data-ga-category="literature_resources"
+                        data-ga-action="disclaimer_link" href="/disclaimer/">Disclaimer</a>
+                </p>
+                <p class="literature-footer-text attribution-statement">The PubMed wordmark and PubMed logo are
+                    registered trademarks of the U.S. Department of Health and Human Services (HHS). Unauthorized use of
+                    these marks is strictly prohibited.</p>
+            </div>
+        </div>
+        <!-- ========== BEGIN FOOTER ========== -->
+        <footer>
+            <section class="icon-section">
+                <div id="icon-section-header" class="icon-section_header">Follow NCBI</div>
+                <div class="grid-container container">
+                    <div class="icon-section_container">
+                        <a class="footer-icon" id="footer_twitter" href="https://twitter.com/ncbi" aria-label="Twitter">
+                            <svg width="40" height="40" viewBox="0 0 40 37" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Twitter</title>
+                                <g id="twitterx1008">
+                                    <path id="path1008"
+                                        d="M6.06736 7L16.8778 20.8991L6.00001 32.2H10.2L18.6 23.1L25.668 32.2H34L22.8 17.5L31.9 7H28.4L20.7 15.4L14.401 7H6.06898H6.06736ZM9.66753 8.73423H12.9327L29.7327 30.4658H26.5697L9.66753 8.73423Z"
+                                        fill="#5B616B"></path>
+                                </g>
+                            </svg>
+                        </a>
+                        <a class="footer-icon" id="footer_facebook" href="https://www.facebook.com/ncbi.nlm"
+                            aria-label="Facebook"><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 300 300">
+                                <title>Facebook</title>
+                                <path class="cls-11"
+                                    d="M210.5,115.12H171.74V97.82c0-8.14,5.39-10,9.19-10h27.14V52l-39.32-.12c-35.66,0-42.42,26.68-42.42,43.77v19.48H99.09v36.32h27.24v109h45.41v-109h35Z">
+                                </path>
+                            </svg></a>
+                        <a class="footer-icon" id="footer_linkedin" href="https://www.linkedin.com/company/ncbinlm"
+                            aria-label="LinkedIn"><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 300 300">
+                                <title>LinkedIn</title>
+                                <path class="cls-11"
+                                    d="M101.64,243.37H57.79v-114h43.85Zm-22-131.54h-.26c-13.25,0-21.82-10.36-21.82-21.76,0-11.65,8.84-21.15,22.33-21.15S101.7,78.72,102,90.38C102,101.77,93.4,111.83,79.63,111.83Zm100.93,52.61A17.54,17.54,0,0,0,163,182v61.39H119.18s.51-105.23,0-114H163v13a54.33,54.33,0,0,1,34.54-12.66c26,0,44.39,18.8,44.39,55.29v58.35H198.1V182A17.54,17.54,0,0,0,180.56,164.44Z">
+                                </path>
+                            </svg></a>
+                        <a class="footer-icon" id="footer_github" href="https://github.com/ncbi"
+                            aria-label="GitHub"><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 300 300">
+                                <defs>
+                                    <style>
+                                        .cls-11,
+                                        .cls-12 {
+                                            fill: #737373;
+                                        }
+
+                                        .cls-11 {
+                                            fill-rule: evenodd;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>GitHub</title>
+                                <path class="cls-11"
+                                    d="M151.36,47.28a105.76,105.76,0,0,0-33.43,206.1c5.28,1,7.22-2.3,7.22-5.09,0-2.52-.09-10.85-.14-19.69-29.42,6.4-35.63-12.48-35.63-12.48-4.81-12.22-11.74-15.47-11.74-15.47-9.59-6.56.73-6.43.73-6.43,10.61.75,16.21,10.9,16.21,10.9,9.43,16.17,24.73,11.49,30.77,8.79,1-6.83,3.69-11.5,6.71-14.14C108.57,197.1,83.88,188,83.88,147.51a40.92,40.92,0,0,1,10.9-28.39c-1.1-2.66-4.72-13.42,1-28,0,0,8.88-2.84,29.09,10.84a100.26,100.26,0,0,1,53,0C198,88.3,206.9,91.14,206.9,91.14c5.76,14.56,2.14,25.32,1,28a40.87,40.87,0,0,1,10.89,28.39c0,40.62-24.74,49.56-48.29,52.18,3.79,3.28,7.17,9.71,7.17,19.58,0,14.15-.12,25.54-.12,29,0,2.82,1.9,6.11,7.26,5.07A105.76,105.76,0,0,0,151.36,47.28Z">
+                                </path>
+                                <path class="cls-12"
+                                    d="M85.66,199.12c-.23.52-1.06.68-1.81.32s-1.2-1.06-.95-1.59,1.06-.69,1.82-.33,1.21,1.07.94,1.6Zm-1.3-1">
+                                </path>
+                                <path class="cls-12"
+                                    d="M90,203.89c-.51.47-1.49.25-2.16-.49a1.61,1.61,0,0,1-.31-2.19c.52-.47,1.47-.25,2.17.49s.82,1.72.3,2.19Zm-1-1.08">
+                                </path>
+                                <path class="cls-12"
+                                    d="M94.12,210c-.65.46-1.71,0-2.37-.91s-.64-2.07,0-2.52,1.7,0,2.36.89.65,2.08,0,2.54Zm0,0">
+                                </path>
+                                <path class="cls-12"
+                                    d="M99.83,215.87c-.58.64-1.82.47-2.72-.41s-1.18-2.06-.6-2.7,1.83-.46,2.74.41,1.2,2.07.58,2.7Zm0,0">
+                                </path>
+                                <path class="cls-12"
+                                    d="M107.71,219.29c-.26.82-1.45,1.2-2.64.85s-2-1.34-1.74-2.17,1.44-1.23,2.65-.85,2,1.32,1.73,2.17Zm0,0">
+                                </path>
+                                <path class="cls-12"
+                                    d="M116.36,219.92c0,.87-1,1.59-2.24,1.61s-2.29-.68-2.3-1.54,1-1.59,2.26-1.61,2.28.67,2.28,1.54Zm0,0">
+                                </path>
+                                <path class="cls-12"
+                                    d="M124.42,218.55c.15.85-.73,1.72-2,1.95s-2.37-.3-2.52-1.14.73-1.75,2-2,2.37.29,2.53,1.16Zm0,0">
+                                </path>
+                            </svg></a>
+                        <a class="footer-icon" id="footer_blog" href="https://ncbiinsights.ncbi.nlm.nih.gov/"
+                            aria-label="Blog">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 40 40">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #737373;
+                                        }
+                                    </style>
+                                </defs>
+                                <path class="cls-1"
+                                    d="M14,30a4,4,0,1,1-4-4,4,4,0,0,1,4,4Zm11,3A19,19,0,0,0,7.05,15a1,1,0,0,0-1,1v3a1,1,0,0,0,.93,1A14,14,0,0,1,20,33.07,1,1,0,0,0,21,34h3a1,1,0,0,0,1-1Zm9,0A28,28,0,0,0,7,6,1,1,0,0,0,6,7v3a1,1,0,0,0,1,1A23,23,0,0,1,29,33a1,1,0,0,0,1,1h3A1,1,0,0,0,34,33Z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container-fluid bg-primary">
+                <div class="container pt-5">
+                    <div class="row mt-3">
+                        <div class="col-lg-3 col-12">
+                            <p><a class="text-white" href="https://www.nlm.nih.gov/socialmedia/index.html">Connect with
+                                    NLM</a></p>
+                            <ul class="list-inline social_media">
+                                <li class="list-inline-item"><a href="https://twitter.com/NLM_NIH" aria-label="Twitter"
+                                        target="_blank" rel="noopener noreferrer">
+                                        <svg width="35" height="35" viewBox="0 0 38 35" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <title>Twitter</title>
+                                            <g id="twitterx1009" clip-path="url(#clip0_65276_3946)">
+                                                <path id="Vector"
+                                                    d="M17.5006 34.6565C26.9761 34.6565 34.6575 26.9751 34.6575 17.4996C34.6575 8.02416 26.9761 0.342773 17.5006 0.342773C8.02514 0.342773 0.34375 8.02416 0.34375 17.4996C0.34375 26.9751 8.02514 34.6565 17.5006 34.6565Z"
+                                                    fill="#205493" stroke="white" stroke-width="1.2"
+                                                    stroke-miterlimit="10"></path>
+                                                <path id="path1009"
+                                                    d="M8.54811 8.5L16.2698 18.4279L8.50001 26.5H11.5L17.5 20L22.5486 26.5H28.5L20.5 16L27 8.5H24.5L19 14.5L14.5007 8.5H8.54927H8.54811ZM11.1197 9.73873H13.4519L25.4519 25.2613H23.1926L11.1197 9.73873Z"
+                                                    fill="white"></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_65276_3946">
+                                                    <rect width="38" height="38" fill="white"></rect>
+                                                </clipPath>
+                                            </defs>
+                                        </svg></a>
+                                </li>
+                                <li class="list-inline-item"><a
+                                        href="https://www.facebook.com/nationallibraryofmedicine" aria-label="Facebook"
+                                        rel="noopener noreferrer" target="_blank">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 249 249" style="enable-background:new 0 0 249 249;"
+                                            xml:space="preserve">
+                                            <style type="text/css">
+                                                .st10 {
+                                                    fill: #FFFFFF;
+                                                }
+
+                                                .st110 {
+                                                    fill: none;
+                                                    stroke: #FFFFFF;
+                                                    stroke-width: 8;
+                                                    stroke-miterlimit: 10;
+                                                }
+                                            </style>
+                                            <title>SM-Facebook</title>
+                                            <g>
+                                                <g>
+                                                    <path class="st10" d="M159,99.1h-24V88.4c0-5,3.3-6.2,5.7-6.2h16.8V60l-24.4-0.1c-22.1,0-26.2,16.5-26.2,27.1v12.1H90v22.5h16.9
+                                                      v67.5H135v-67.5h21.7L159,99.1z"></path>
+                                                </g>
+                                            </g>
+                                            <circle class="st110" cx="123.6" cy="123.2" r="108.2"></circle>
+                                        </svg>
+                                    </a></li>
+                                <li class="list-inline-item"><a href="https://www.youtube.com/user/NLMNIH"
+                                        aria-label="Youtube" target="_blank" rel="noopener noreferrer"><svg
+                                            version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            viewBox="0 0 249 249" style="enable-background:new 0 0 249 249;"
+                                            xml:space="preserve">
+                                            <title>SM-Youtube</title>
+                                            <style type="text/css">
+                                                .st4 {
+                                                    fill: none;
+                                                    stroke: #FFFFFF;
+                                                    stroke-width: 8;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st5 {
+                                                    fill: #FFFFFF;
+                                                }
+                                            </style>
+                                            <circle class="st4" cx="124.2" cy="123.4" r="108.2"></circle>
+                                            <g transform="translate(0,-952.36218)">
+                                                <path class="st5"
+                                                    d="M88.4,1037.4c-10.4,0-18.7,8.3-18.7,18.7v40.1c0,10.4,8.3,18.7,18.7,18.7h72.1c10.4,0,18.7-8.3,18.7-18.7
+                                            v-40.1c0-10.4-8.3-18.7-18.7-18.7H88.4z M115.2,1058.8l29.4,17.4l-29.4,17.4V1058.8z">
+                                                </path>
+                                            </g>
+                                        </svg></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <p class="address_footer text-white">National Library of Medicine<br>
+                                <a href="https://www.google.com/maps/place/8600+Rockville+Pike,+Bethesda,+MD+20894/@38.9959508,-77.101021,17z/data=!3m1!4b1!4m5!3m4!1s0x89b7c95e25765ddb:0x19156f88b27635b8!8m2!3d38.9959508!4d-77.0988323"
+                                    class="text-white" target="_blank" rel="noopener noreferrer">8600 Rockville Pike<br>
+                                    Bethesda, MD 20894</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-12 centered-lg">
+                            <p><a href="https://www.nlm.nih.gov/web_policies.html" class="text-white">Web
+                                    Policies</a><br>
+                                <a href="https://www.nih.gov/institutes-nih/nih-office-director/office-communications-public-liaison/freedom-information-act-office"
+                                    class="text-white">FOIA</a><br>
+                                <a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
+                                    class="text-white" id="vdp">HHS Vulnerability Disclosure</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-12 centered-lg">
+                            <p><a class="supportLink text-white"
+                                    href="https://support.nlm.nih.gov/?pagename=pubmed%3Apubmed%3Aadvanced-search%3ANONE"
+                                    data-pinger-pagename-param="true">Help</a><br>
+                                <a href="https://www.nlm.nih.gov/accessibility.html"
+                                    class="text-white">Accessibility</a><br>
+                                <a href="https://www.nlm.nih.gov/careers/careers.html" class="text-white">Careers</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 centered-lg">
+                            <nav class="bottom-links">
+                                <ul class="mt-3">
+                                    <li>
+                                        <a class="text-white" href="//www.nlm.nih.gov/">NLM</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-white" href="https://www.nih.gov/">NIH</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-white" href="https://www.hhs.gov/">HHS</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-white" href="https://www.usa.gov/">USA.gov</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </footer>
+        <!-- ========== END FOOTER ========== -->
+        <!-- javascript to inject NWDS meta tags. Note: value of nwds_version is updated by "npm version" command -->
+
+        <script type="text/javascript">
+            var nwds_version = "1.2.5";
+
+            var meta_nwds_ver = document.createElement('meta');
+            meta_nwds_ver.name = 'ncbi_nwds_ver';
+            meta_nwds_ver.content = nwds_version;
+            document.getElementsByTagName('head')[0].appendChild(meta_nwds_ver);
+
+            var meta_nwds = document.createElement('meta');
+            meta_nwds.name = 'ncbi_nwds';
+            meta_nwds.content = 'yes';
+            document.getElementsByTagName('head')[0].appendChild(meta_nwds);
+
+            var alertsUrl = "/core/alerts/alerts.js";
+            if (typeof ncbiBaseUrl !== 'undefined') {
+                alertsUrl = ncbiBaseUrl + alertsUrl;
+            }
+        </script>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- jQuery with plugins -->
+
+
+    <script
+        src="https://cdn.ncbi.nlm.nih.gov/pubmed/e4284ea2-e990-4f05-b666-02ad427fe2d8/CACHE/js/output.1119c5b65e07.js"></script>
+
+
+
+
+    <!-- Project base scripts -->
+
+    <script
+        src="https://cdn.ncbi.nlm.nih.gov/pubmed/e4284ea2-e990-4f05-b666-02ad427fe2d8/CACHE/js/output.598ebf77bf13.js"></script>
+
+
+    <script>
+        ncbi.awesome.basePage.init({
+            userInfo: {
+                isLoggedIn: false,
+                username: "",
+                loginUrl: "https://account.ncbi.nlm.nih.gov/?back_url=https%3A%2F%2Fpubmed.ncbi.nlm.nih.gov%2Fadvanced%2F",
+                logoutUrl: "https://www.ncbi.nlm.nih.gov/account/signout/?back_url=https%3A//pubmed.ncbi.nlm.nih.gov/advanced/"
+            },
+            baseUrl: 'https://www.ncbi.nlm.nih.gov',
+            noSessionCookieName: "pm-ns",
+            searchIdCookieName: "pm-sid",
+            adjNavSearchIdCookieName: "pm-adjnav-sid",
+            searchFormSubmittedCookieName: "pm-sfs",
+            isOnSearchPageCookieName: "pm-iosp",
+            backToSearchCookieName: "pm-btsl",
+            clinicalSeeAllCookieName: "pm-csa",
+            jsCookieDomain: "pubmed.ncbi.nlm.nih.gov",
+            userShareRequestFailed: "",
+            noSharedSettings: "myncbi_no_shared_settings",
+            noSharedAccount: "myncbi_no_shared_account"
+        });
+    </script>
+
+    <script type="module">
+        import dismissableNCBIAlert from "https://cdn.ncbi.nlm.nih.gov/pubmed/e4284ea2-e990-4f05-b666-02ad427fe2d8/core/dismissable-ncbi-alert.js";
+
+        jQuery.getScript("https://cdn.ncbi.nlm.nih.gov/core/alerts/alerts.js", function () {
+            galert(['.usa-skipnav', 'body > *:first-child']);
+            dismissableNCBIAlert();
+        }).fail(function () {
+        });
+    </script>
+
+
+    <script defer="" type="text/javascript" src="https://cdn.ncbi.nlm.nih.gov/core/pinger/pinger.js"> </script>
+
+
+
+
+
+
+    <!-- Search page scripts -->
+    <script
+        src="https://cdn.ncbi.nlm.nih.gov/pubmed/e4284ea2-e990-4f05-b666-02ad427fe2d8/CACHE/js/output.c01404289027.js"></script>
+    <script id="history-data"
+        type="application/json">[{"ref_number": 2, "search_query": "\"older\"+\"alzheimer\"+\"factor analysis\"", "query_url": "/?term=%22older%22%2B%22alzheimer%22%2B%22factor+analysis%22\u0026sort=relevance", "search_time": "12:38:42", "search_date": "2026/02/08", "result_count": "153", "sort_display": "", "filter_data": [], "filter_titles": "", "entrez_query": "(\"older\"[All Fields] AND \"alzheimer\"[All Fields]) AND \"factor analysis\"[All Fields]", "time_stamp": 1770572322.883595, "full_query_data": "\"older\"+\"alzheimer\"+\"factor analysis\"", "expanded_query": "\"older\"+\"alzheimer\"+\"factor analysis\"", "gws_translated_query": "\"older\"+\"alzheimer\"+\"factor analysis\"", "parsed_query": "", "parsed_query_indicies": [], "stop_word_indicies": [], "phrase_not_found_indicies": [], "quoted_phrase_not_found_indicies": [], "ignored_fields": []}, {"ref_number": 1, "search_query": "older+alzheimer+factor analysis", "query_url": "/?term=older%2Balzheimer%2Bfactor+analysis\u0026sort=relevance", "search_time": "12:38:00", "search_date": "2026/02/08", "result_count": "11,178,122", "sort_display": "", "filter_data": [], "filter_titles": "", "entrez_query": "\"analysis\"[MeSH Subheading] OR \"analysis\"[All Fields]", "time_stamp": 1770572280.659188, "full_query_data": "older+alzheimer+factor analysis", "expanded_query": "older+alzheimer+factor analysis", "gws_translated_query": "older+alzheimer+factor analysis", "parsed_query": [{"term": "analysis", "translation": "\"analysis\"[Subheading] OR \"analysis\"[All Fields]"}], "parsed_query_indicies": [], "stop_word_indicies": [], "phrase_not_found_indicies": [{"begin": 0, "end": 22}], "quoted_phrase_not_found_indicies": [], "ignored_fields": []}]</script>
+
+    <script>
+        ncbi.awesome.advancedSearchPage.init({
+            fields: "[\u0027Affiliation\u0027, \u0027All Fields\u0027, \u0027Author\u0027, \u0027Author \u002D Corporate\u0027, \u0027Author \u002D First\u0027, \u0027Author \u002D Identifier\u0027, \u0027Author \u002D Last\u0027, \u0027Book\u0027, \u0027Conflict of Interest Statements\u0027, \u0027Date \u002D Completion\u0027, \u0027Date \u002D Create\u0027, \u0027Date \u002D Entry\u0027, \u0027Date \u002D MeSH\u0027, \u0027Date \u002D Modification\u0027, \u0027Date \u002D Publication\u0027, \u0027EC/RN Number\u0027, \u0027Editor\u0027, \u0027Filter\u0027, \u0027Grants and Funding\u0027, \u0027ISBN\u0027, \u0027Investigator\u0027, \u0027Issue\u0027, \u0027Journal\u0027, \u0027Language\u0027, \u0027Location ID\u0027, \u0027MeSH Major Topic\u0027, \u0027MeSH Subheading\u0027, \u0027MeSH Terms\u0027, \u0027Other Term\u0027, \u0027Pagination\u0027, \u0027Pharmacological Action\u0027, \u0027Publication Type\u0027, \u0027Publisher\u0027, \u0027Secondary Source ID\u0027, \u0027Subject \u002D Personal Name\u0027, \u0027Supplementary Concept\u0027, \u0027Text Word\u0027, \u0027Title\u0027, \u0027Title/Abstract\u0027, \u0027Transliterated Title\u0027, \u0027Volume\u0027]",
+            addToHistoryUrl: "/addToHistory/",
+            deleteHistoryUrl: "/deleteHistory/",
+            deleteHistoryRecordUrl: "/deleteHistoryRecord/",
+            historyCacheExistsUrl: "/historyCacheExists/",
+            rootUrl: "/",
+            sortByCookieName: "pm-sb",
+            searchIdCookieName: "pm-sid",
+            adjNavSearchIdCookieName: "pm-adjnav-sid",
+            searchFormSubmittedCookieName: "pm-sfs",
+            jsCookieDomain: "pubmed.ncbi.nlm.nih.gov"
+        });
+    </script>
+    <div class="fake-body-scroll"></div>
+
+
+    <div id="ZN_dikYWqsjiUWN0Q5"></div>
+    <div class="fake-body-scroll"></div>
+    <div class="fake-body-scroll"></div>
+    <div class="fake-body-scroll"></div>
+    <script id="_fed_an_ua_tag" text="" charset="" type="text/javascript"
+        src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&amp;subagency=NCBI%20-%20ncbi.nlm.nih.gov&amp;sitetopic=NCBI%20Pinger%200.39.3&amp;siteplatform=NCBI%20Pinger%200.39.3"></script>
+    <script type="text/javascript"
+        src="https://zndikYWqsjiUWN0Q5-nlmenterprise.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_dikYWqsjiUWN0Q5"></script>
+    <script
+        src="https://siteintercept.qualtrics.com/dxjsmodule/CoreModule.js?Q_CLIENTVERSION=2.42.0&amp;Q_CLIENTTYPE=web&amp;Q_BRANDID=nlmenterprise"
+        defer=""></script>
+</body>

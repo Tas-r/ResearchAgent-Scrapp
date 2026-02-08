@@ -1,0 +1,139 @@
+{
+  "total_results": 10,
+  "pages_total": 1,
+  "next_page_url": "",
+  "chunk_ids": [
+    "22777078",
+    "23039909",
+    "22943767",
+    "22040626",
+    "23083490",
+    "22122408",
+    "21721044",
+    "22384819",
+    "22193355",
+    "22997582"
+  ],
+  "results": [
+    {
+      "pmid": "22777078",
+      "title": "Confirmatory factor analysis of the ADNI Neuropsychological Battery.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22777078/",
+      "authors": "Park LQ, Gross AL, McLaren DG, Pa J, Johnson JK, Mitchell M, Manly JJ; Alzheimer’s Disease Neuroimaging Initiative.",
+      "journal_citation": "Brain Imaging Behav. 2012 Dec;6(4):528-39. doi: 10.1007/s11682-012-9190-3.",
+      "journal_citation_short": "Brain Imaging Behav. 2012.",
+      "journal_citation_full": "Brain Imaging Behav. 2012 Dec;6(4):528-39. doi: 10.1007/s11682-012-9190-3.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 Dec",
+      "snippet": "Confirmatory factor analysis (CFA) of 23 variables from 10 neuropsychological tests resulted in five factors (memory, language, visuospatial functioning, attention, and executive function/processing speed) that were invariant across levels of cognitive impairment. T …"
+    },
+    {
+      "pmid": "23039909",
+      "title": "Neuropsychological test performance and cognitive reserve in healthy aging and the Alzheimer's disease spectrum: a theoretically driven factor analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23039909/",
+      "authors": "Mitchell MB, Shaughnessy LW, Shirk SD, Yang FM, Atri A.",
+      "journal_citation": "J Int Neuropsychol Soc. 2012 Nov;18(6):1071-80. doi: 10.1017/S1355617712000859. Epub 2012 Oct 8.",
+      "journal_citation_short": "J Int Neuropsychol Soc. 2012.",
+      "journal_citation_full": "J Int Neuropsychol Soc. 2012 Nov;18(6):1071-80. doi: 10.1017/S1355617712000859. Epub 2012 Oct 8.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 Nov",
+      "snippet": "Statistical models of cognitive performance that include cognitive reserve can improve sensitivity to change and clinical efficacy. We used confirmatory factor analysis to test a four-factor model composed of memory/language, processing speed/executive function, att …"
+    },
+    {
+      "pmid": "22943767",
+      "title": "Neuropsychological assessment of driving safety risk in older adults with and without neurologic disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22943767/",
+      "authors": "Anderson SW, Aksan N, Dawson JD, Uc EY, Johnson AM, Rizzo M.",
+      "journal_citation": "J Clin Exp Neuropsychol. 2012;34(9):895-905. doi: 10.1080/13803395.2011.630654. Epub 2012 Sep 3.",
+      "journal_citation_short": "J Clin Exp Neuropsychol. 2012.",
+      "journal_citation_full": "J Clin Exp Neuropsychol. 2012;34(9):895-905. doi: 10.1080/13803395.2011.630654. Epub 2012 Sep 3.",
+      "publication_year": 2012,
+      "publication_date_text": "2012",
+      "snippet": "Decline in cognitive abilities can be an important contributor to the driving problems encountered by older adults, and neuropsychological assessment may provide a practical approach to evaluating this aspect of driving safety risk. ...Performances on all neuropsychologica …"
+    },
+    {
+      "pmid": "22040626",
+      "title": "Psychometric evaluation of the Swedish version of the Person-Centered Care Assessment Tool (P-CAT).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22040626/",
+      "authors": "Sjögren K, Lindkvist M, Sandman PO, Zingmark K, Edvardsson D.",
+      "journal_citation": "Int Psychogeriatr. 2012 Mar;24(3):406-15. doi: 10.1017/S104161021100202X. Epub 2011 Nov 1.",
+      "journal_citation_short": "Int Psychogeriatr. 2012.",
+      "journal_citation_full": "Int Psychogeriatr. 2012 Mar;24(3):406-15. doi: 10.1017/S104161021100202X. Epub 2011 Nov 1.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 Mar",
+      "snippet": "METHODS: A cross-sectional sample of 1465 staff from 195 residential care units for older people in Sweden participated in the study. Validity, reliability, and discrimination ability of the scale were evaluated. RESULTS: Confirmatory factor analysis, paralle …"
+    },
+    {
+      "pmid": "23083490",
+      "title": "Self-reported depressive syndromes in mild cognitive impairment and mild Alzheimer's disease.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23083490/",
+      "authors": "Carvalho JO, Tan JE, Springate BA, Davis JD.",
+      "journal_citation": "Int Psychogeriatr. 2013 Mar;25(3):439-44. doi: 10.1017/S1041610212001676. Epub 2012 Oct 19.",
+      "journal_citation_short": "Int Psychogeriatr. 2013.",
+      "journal_citation_full": "Int Psychogeriatr. 2013 Mar;25(3):439-44. doi: 10.1017/S1041610212001676. Epub 2012 Oct 19.",
+      "publication_year": 2013,
+      "publication_date_text": "2013 Mar",
+      "snippet": "METHODS: Participants were 228 older adults (mean age = 74, SD = 7.9) diagnosed with mild cognitive impairment (MCI; n = 137) or early Alzheimer's disease (n = 85), who completed the BDI-II as part of an outpatient neuropsychological evaluation. Exploratory principa …"
+    },
+    {
+      "pmid": "22122408",
+      "title": "Evaluation of a Japanese version of the Mini-Mental State Examination in elderly persons.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22122408/",
+      "authors": "Ideno Y, Takayama M, Hayashi K, Takagi H, Sugai Y.",
+      "journal_citation": "Geriatr Gerontol Int. 2012 Apr;12(2):310-6. doi: 10.1111/j.1447-0594.2011.00772.x. Epub 2011 Nov 28.",
+      "journal_citation_short": "Geriatr Gerontol Int. 2012.",
+      "journal_citation_full": "Geriatr Gerontol Int. 2012 Apr;12(2):310-6. doi: 10.1111/j.1447-0594.2011.00772.x. Epub 2011 Nov 28.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 Apr",
+      "snippet": "AIM: This study aimed to examine the validity and item-response characteristics of the Mini-Mental State Examination (MMSE), which is used for assessing cognitive function, in Japanese older adults. METHODS: Factor analysis and item response analysis were car …"
+    },
+    {
+      "pmid": "21721044",
+      "title": "The Fear of Alzheimer's Disease Scale: a new measure designed to assess anticipatory dementia in older adults.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21721044/",
+      "authors": "French SL, Floyd M, Wilkins S, Osato S.",
+      "journal_citation": "Int J Geriatr Psychiatry. 2012 May;27(5):521-8. doi: 10.1002/gps.2747. Epub 2011 Jul 1.",
+      "journal_citation_short": "Int J Geriatr Psychiatry. 2012.",
+      "journal_citation_full": "Int J Geriatr Psychiatry. 2012 May;27(5):521-8. doi: 10.1002/gps.2747. Epub 2011 Jul 1.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 May",
+      "snippet": "METHODS: The current study utilized 101 older adults ages 65 to 91 to develop and validate an important new scale, the Fear of Alzheimer's Disease Scale (FADS). ...CONCLUSION: The FADS is a reliable and valid instrument and is the first of its kind available to dire …"
+    },
+    {
+      "pmid": "22384819",
+      "title": "The Telephone Interview for Cognitive Status (Modified): relation with a comprehensive neuropsychological assessment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22384819/",
+      "authors": "van den Berg E, Ruis C, Biessels GJ, Kappelle LJ, van Zandvoort MJ.",
+      "journal_citation": "J Clin Exp Neuropsychol. 2012;34(6):598-605. doi: 10.1080/13803395.2012.667066. Epub 2012 Mar 5.",
+      "journal_citation_short": "J Clin Exp Neuropsychol. 2012.",
+      "journal_citation_full": "J Clin Exp Neuropsychol. 2012;34(6):598-605. doi: 10.1080/13803395.2012.667066. Epub 2012 Mar 5.",
+      "publication_year": 2012,
+      "publication_date_text": "2012",
+      "snippet": "The modified Telephone Interview for Cognitive Status (TICS-m) is a widely used screening instrument for (Alzheimer's) dementia. Psychometric evaluation of the TICS-m is limited. This study examined the relation between the TICS-m and a comprehensive neuropsychological ass …"
+    },
+    {
+      "pmid": "22193355",
+      "title": "Subjective cognitive complaints of older adults at the population level: an item response theory analysis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22193355/",
+      "authors": "Snitz BE, Yu L, Crane PK, Chang CC, Hughes TF, Ganguli M.",
+      "journal_citation": "Alzheimer Dis Assoc Disord. 2012 Oct-Dec;26(4):344-51. doi: 10.1097/WAD.0b013e3182420bdf.",
+      "journal_citation_short": "Alzheimer Dis Assoc Disord. 2012.",
+      "journal_citation_full": "Alzheimer Dis Assoc Disord. 2012 Oct-Dec;26(4):344-51. doi: 10.1097/WAD.0b013e3182420bdf.",
+      "publication_year": 2012,
+      "publication_date_text": "2012 Oct-Dec",
+      "snippet": "Subjective cognitive complaints (SCCs) are increasingly a focus in studies on prodromal Alzheimer disease (AD) and risk for dementia. Little is known about the optimal approach to measure SCCs. ...Modern psychometric approaches including IRT may be useful in developing: (1 …"
+    },
+    {
+      "pmid": "22997582",
+      "title": "Association of social engagement with brain volumes assessed by structural MRI.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22997582/",
+      "authors": "James BD, Glass TA, Caffo B, Bobb JF, Davatzikos C, Yousem D, Schwartz BS.",
+      "journal_citation": "J Aging Res. 2012;2012:512714. doi: 10.1155/2012/512714. Epub 2012 Sep 11.",
+      "journal_citation_short": "J Aging Res. 2012.",
+      "journal_citation_full": "J Aging Res. 2012;2012:512714. doi: 10.1155/2012/512714. Epub 2012 Sep 11.",
+      "publication_year": 2012,
+      "publication_date_text": "2012",
+      "snippet": "We tested the hypothesis that social engagement is associated with larger brain volumes in a cohort study of 348 older male former lead manufacturing workers (n = 305) and population-based controls (n = 43), age 48 to 82. Social engagement was measured using a summary scal …"
+    }
+  ]
+}
