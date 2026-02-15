@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+.env
+API.env
+
+playwright/.cache/
+ms-playwright/
+
+pubmed_results*.json
+PubmedAfterSearch_generated.html
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Backend
+backend/db.sqlite3

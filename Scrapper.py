@@ -97,6 +97,25 @@ def build_pubmed_search_url(structured_query: str) -> str:
     return f"https://pubmed.ncbi.nlm.nih.gov/?term={encoded}"
 
 
+def build_date_publication_clause(
+    pub_date_start: Optional[str],
+    pub_date_end: Optional[str],
+) -> str:
+    """
+    Build a PubMed 'Date - Publication' range clause that can be embedded into the term query.
+    Uses wide defaults if only one side is provided.
+    """
+    start = (pub_date_start or "").strip()
+    end = (pub_date_end or "").strip()
+    if not start and not end:
+        return ""
+    if not start:
+        start = "1800/01/01"
+    if not end:
+        end = "3000/12/31"
+    return f"(\"{start}\"[Date - Publication] : \"{end}\"[Date - Publication])"
+
+
 def parse_publication_year(citation_text: str) -> Optional[int]:
     m = YEAR_RE.search(citation_text or "")
     if not m:
@@ -216,6 +235,222 @@ def scrape_pubmed_results(page, max_results: Optional[int] = None) -> dict[str, 
     }
 
 
+def run_pubmed_scrape(
+    *,
+    terms: list[str],
+    headless: bool = True,
+    slowmo: int = 0,
+    step_delay: int = 0,
+    max_results: int = 10,
+    save_html: Optional[str] = "PubmedAfterSearch_generated.html",
+    output_json: Optional[str] = "pubmed_results.json",
+    source: str = "live",
+    local_home: Optional[str] = None,
+    pub_date_start: Optional[str] = None,
+    pub_date_end: Optional[str] = None,
+    debug_html_on_error: Optional[str] = "pubmed_debug_last.html",
+    user_data_dir: Optional[str] = None,
+    user_agent: Optional[str] = None,
+    locale: str = "en-US",
+    timezone_id: str = "America/New_York",
+    chromium_channel: Optional[str] = None,
+) -> dict[str, Any]:
+    """
+    Programmatic API for this scraper (used by the chat agent).
+    Returns the structured JSON dict. Optionally writes HTML/JSON to disk.
+    """
+    structured_query = build_pubmed_structured_query(terms)
+
+    script_dir = Path(__file__).resolve().parent
+    local_home_path = Path(local_home).expanduser().resolve() if local_home else (script_dir / "PubmedMain.html")
+    local_home_url = local_home_path.as_uri() if local_home_path.exists() else ""
+
+    save_html_path = Path(save_html).expanduser() if save_html else None
+    out_json_path = Path(output_json).expanduser() if output_json else None
+
+    with sync_playwright() as p:
+        step_delay_ms = 0 if headless else max(0, int(step_delay))
+        launch_args = [
+            "--disable-blink-features=AutomationControlled",
+            "--disable-features=IsolateOrigins,site-per-process",
+        ]
+
+        if user_data_dir:
+            context = p.chromium.launch_persistent_context(
+                user_data_dir=str(user_data_dir),
+                headless=headless,
+                slow_mo=max(0, int(slowmo)),
+                channel=chromium_channel,
+                args=launch_args,
+                locale=locale,
+                timezone_id=timezone_id,
+                user_agent=user_agent,
+            )
+            page = context.new_page()
+            browser = None
+        else:
+            browser = p.chromium.launch(
+                headless=headless,
+                slow_mo=max(0, int(slowmo)),
+                channel=chromium_channel,
+                args=launch_args,
+            )
+            context = browser.new_context(
+                locale=locale,
+                timezone_id=timezone_id,
+                user_agent=user_agent,
+            )
+            page = context.new_page()
+
+        def _dismiss_common_popups() -> None:
+            for sel in [
+                "button#onetrust-accept-btn-handler",
+                "button[aria-label='Close Clipboard and Search History not available warning banner']",
+                "button.close-banner-button",
+                "button.ncbi-close-button",
+            ]:
+                try:
+                    loc = page.locator(sel)
+                    if loc.count() > 0:
+                        loc.first.click(timeout=1000)
+                except Exception:
+                    pass
+
+        def _run_advanced_search_with_publication_date() -> None:
+            try:
+                adv_link = page.locator("a.adv-search-link[href='/advanced/']").first
+                if adv_link.count() > 0:
+                    adv_link.click(timeout=3000)
+                else:
+                    raise RuntimeError("advanced link not found")
+            except Exception:
+                page.goto("https://pubmed.ncbi.nlm.nih.gov/advanced/", wait_until="domcontentloaded", timeout=30_000)
+
+            _dismiss_common_popups()
+            # Sometimes the container exists but isn't considered "visible" (overlay/layout); attached is enough.
+            page.wait_for_selector("#advanced-search-page-container", state="attached", timeout=60_000)
+
+            page.wait_for_selector("select#field-selector", timeout=30_000)
+            try:
+                page.select_option("#field-selector", label="Date - Publication")
+            except Exception:
+                page.select_option("#field-selector", value="Date - Publication")
+            if step_delay_ms:
+                page.wait_for_timeout(step_delay_ms)
+
+            if pub_date_start:
+                page.locator("#start-date-input").fill(pub_date_start)
+                if step_delay_ms:
+                    page.wait_for_timeout(step_delay_ms)
+            if pub_date_end:
+                page.locator("#end-date-input").fill(pub_date_end)
+                if step_delay_ms:
+                    page.wait_for_timeout(step_delay_ms)
+
+            page.locator("button.add-button").click()
+            page.wait_for_timeout(300 if headless else max(300, step_delay_ms))
+
+            query_box = page.locator("textarea#query-box-input[name='term']").first
+            query_box.wait_for(state="attached", timeout=30_000)
+            existing_query = (query_box.input_value() or "").strip()
+            if existing_query:
+                combined_query = f"({existing_query}) AND ({structured_query})"
+            else:
+                combined_query = structured_query
+            query_box.fill(combined_query)
+            if step_delay_ms:
+                page.wait_for_timeout(step_delay_ms)
+
+            page.locator("button.search-btn[data-ga-action='search_button']").click()
+            if step_delay_ms:
+                page.wait_for_timeout(step_delay_ms)
+
+        opened = False
+        if source == "live":
+            page.goto("https://pubmed.ncbi.nlm.nih.gov/", wait_until="domcontentloaded", timeout=30_000)
+            _dismiss_common_popups()
+            opened = True
+
+        if not opened and source == "local":
+            if not local_home_url:
+                raise FileNotFoundError(f"Local home not found at: {local_home_path}")
+            page.goto(local_home_url, wait_until="domcontentloaded", timeout=12_000)
+            page.wait_for_selector("form#search-form input#id_term[name='term']", state="attached", timeout=8_000)
+            opened = True
+
+        if not opened and source == "auto":
+            if local_home_url:
+                try:
+                    page.goto(local_home_url, wait_until="domcontentloaded", timeout=12_000)
+                    page.wait_for_selector("form#search-form input#id_term[name='term']", state="attached", timeout=8_000)
+                    opened = True
+                except PlaywrightTimeoutError:
+                    opened = False
+
+            if not opened:
+                page.goto("https://pubmed.ncbi.nlm.nih.gov/", wait_until="domcontentloaded", timeout=30_000)
+                _dismiss_common_popups()
+                opened = True
+
+        performed_search = False
+        if pub_date_start or pub_date_end:
+            # Advanced Search UI can be flaky in headless due to slow loads / bot mitigation.
+            # Try it first; if it fails, fall back to a direct URL with an embedded date clause.
+            try:
+                _run_advanced_search_with_publication_date()
+                performed_search = True
+            except Exception:
+                date_clause = build_date_publication_clause(pub_date_start, pub_date_end)
+                combined = f"({date_clause}) AND ({structured_query})" if date_clause else structured_query
+                results_url = build_pubmed_search_url(combined)
+                page.goto(results_url, wait_until="domcontentloaded", timeout=60_000)
+                performed_search = True
+
+        if not performed_search:
+            did_ui_search = False
+            try:
+                search_input = page.locator("form#search-form input[name='term']").first
+                search_input.wait_for(state="attached", timeout=8_000)
+                _dismiss_common_popups()
+                search_input.click(timeout=2_000)
+                search_input.fill(structured_query, timeout=5_000)
+                search_input.press("Enter", timeout=5_000)
+                did_ui_search = True
+            except Exception:
+                did_ui_search = False
+
+            if not did_ui_search:
+                results_url = build_pubmed_search_url(structured_query)
+                page.goto(results_url, wait_until="domcontentloaded", timeout=30_000)
+
+        try:
+            # PubMed can render elements in ways Playwright considers not "visible" yet.
+            # Attached is sufficient for scraping DOM text/attrs.
+            page.wait_for_selector("#search-results", state="attached", timeout=60_000)
+            page.wait_for_selector("article.full-docsum", state="attached", timeout=60_000)
+        except PlaywrightTimeoutError:
+            if debug_html_on_error:
+                try:
+                    Path(debug_html_on_error).write_text(page.content(), encoding="utf-8")
+                except Exception:
+                    pass
+            raise
+
+        if save_html_path:
+            html = page.content()
+            save_html_path.write_text(html, encoding="utf-8")
+
+        data = scrape_pubmed_results(page, max_results=max_results)
+        if out_json_path:
+            out_json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        if browser is not None:
+            browser.close()
+        else:
+            context.close()
+        return data
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Scrape PubMed search results using Playwright.")
     parser.add_argument("--terms", nargs="*", help='Terms/phrases, e.g. --terms older alzheimer "factor analysis"')
@@ -275,170 +510,24 @@ def main() -> int:
 
     try:
         terms = parse_terms_from_cli(args)
-        structured_query = build_pubmed_structured_query(terms)
     except Exception as e:
         print(f"Input error: {e}", file=sys.stderr)
         return 2
 
-    script_dir = Path(__file__).resolve().parent
-    local_home_path = Path(args.local_home).expanduser().resolve() if args.local_home else (script_dir / "PubmedMain.html")
-    local_home_url = local_home_path.as_uri() if local_home_path.exists() else ""
-
-    save_html_path = Path(args.save_html).expanduser()
-    out_json_path = Path(args.output).expanduser()
-
-    print(f"Structured query: {structured_query}")
-
-    with sync_playwright() as p:
-        step_delay_ms = 0 if args.headless else max(0, int(args.step_delay))
-        browser = p.chromium.launch(headless=args.headless, slow_mo=max(0, int(args.slowmo)))
-        context = browser.new_context()
-        page = context.new_page()
-
-        def _dismiss_common_popups() -> None:
-            # Best-effort: PubMed/NCBI pages sometimes show banners/overlays.
-            for sel in [
-                "button#onetrust-accept-btn-handler",
-                "button[aria-label='Close Clipboard and Search History not available warning banner']",
-                "button.close-banner-button",
-                "button.ncbi-close-button",
-            ]:
-                try:
-                    loc = page.locator(sel)
-                    if loc.count() > 0:
-                        loc.first.click(timeout=1000)
-                except Exception:
-                    pass
-
-        def _run_advanced_search_with_publication_date() -> None:
-            # Try clicking the "Advanced" link if it exists on the current page; otherwise just navigate directly.
-            try:
-                adv_link = page.locator("a.adv-search-link[href='/advanced/']").first
-                if adv_link.count() > 0:
-                    adv_link.click(timeout=3000)
-                else:
-                    raise RuntimeError("advanced link not found")
-            except Exception:
-                page.goto("https://pubmed.ncbi.nlm.nih.gov/advanced/", wait_until="domcontentloaded", timeout=30_000)
-
-            _dismiss_common_popups()
-            page.wait_for_selector("#advanced-search-page-container", timeout=30_000)
-
-            # Select Publication Date field
-            page.wait_for_selector("select#field-selector", timeout=30_000)
-            try:
-                page.select_option("#field-selector", label="Date - Publication")
-            except Exception:
-                page.select_option("#field-selector", value="Date - Publication")
-            if step_delay_ms:
-                page.wait_for_timeout(step_delay_ms)
-
-            # Fill date range if provided (format: YYYY/MM/DD)
-            if args.pub_date_start:
-                page.locator("#start-date-input").fill(args.pub_date_start)
-                if step_delay_ms:
-                    page.wait_for_timeout(step_delay_ms)
-            if args.pub_date_end:
-                page.locator("#end-date-input").fill(args.pub_date_end)
-                if step_delay_ms:
-                    page.wait_for_timeout(step_delay_ms)
-
-            # Click ADD to insert date constraint into query box
-            page.locator("button.add-button").click()
-            page.wait_for_timeout(300 if args.headless else max(300, step_delay_ms))
-
-            # Combine date clause (inserted by ADD) with the structured term query, then search.
-            query_box = page.locator("textarea#query-box-input[name='term']").first
-            query_box.wait_for(state="attached", timeout=30_000)
-            existing_query = (query_box.input_value() or "").strip()
-            if existing_query:
-                # Preserve the date clause and add terms without overwriting it.
-                combined_query = f"({existing_query}) AND ({structured_query})"
-            else:
-                combined_query = structured_query
-            query_box.fill(combined_query)
-            if step_delay_ms:
-                page.wait_for_timeout(step_delay_ms)
-
-            page.locator("button.search-btn[data-ga-action='search_button']").click()
-            if step_delay_ms:
-                page.wait_for_timeout(step_delay_ms)
-
-        opened = False
-
-        # If user forces live, go live.
-        if args.source == "live":
-            page.goto("https://pubmed.ncbi.nlm.nih.gov/", wait_until="domcontentloaded", timeout=30_000)
-            _dismiss_common_popups()
-            opened = True
-            print("Opened live PubMed: https://pubmed.ncbi.nlm.nih.gov/")
-
-        # If user forces local, only try local.
-        if not opened and args.source == "local":
-            if not local_home_url:
-                print(f"Local home not found at: {local_home_path}", file=sys.stderr)
-                return 2
-            page.goto(local_home_url, wait_until="domcontentloaded", timeout=12_000)
-            page.wait_for_selector("form#search-form input#id_term[name='term']", state="attached", timeout=8_000)
-            opened = True
-            print(f"Opened local home: {local_home_path}")
-
-        # Auto: try local first, then fall back to live.
-        if not opened and args.source == "auto":
-            if local_home_url:
-                try:
-                    page.goto(local_home_url, wait_until="domcontentloaded", timeout=12_000)
-                    page.wait_for_selector("form#search-form input#id_term[name='term']", state="attached", timeout=8_000)
-                    opened = True
-                    print(f"Opened local home: {local_home_path}")
-                except PlaywrightTimeoutError:
-                    opened = False
-
-            if not opened:
-                page.goto("https://pubmed.ncbi.nlm.nih.gov/", wait_until="domcontentloaded", timeout=30_000)
-                _dismiss_common_popups()
-                opened = True
-                print("Opened live PubMed: https://pubmed.ncbi.nlm.nih.gov/")
-
-        performed_search = False
-        if args.pub_date_start or args.pub_date_end:
-            _run_advanced_search_with_publication_date()
-            performed_search = True
-
-        # Prefer doing the "real" UI interaction when possible (useful when running headed).
-        # If the search box can't be found (headless detection / slow load / alternate markup),
-        # fall back to navigating directly to the results URL.
-        if not performed_search:
-            did_ui_search = False
-            try:
-                search_input = page.locator("form#search-form input[name='term']").first
-                search_input.wait_for(state="attached", timeout=8_000)
-                _dismiss_common_popups()
-                search_input.click(timeout=2_000)
-                search_input.fill(structured_query, timeout=5_000)
-                search_input.press("Enter", timeout=5_000)
-                did_ui_search = True
-            except Exception:
-                did_ui_search = False
-
-            if not did_ui_search:
-                results_url = build_pubmed_search_url(structured_query)
-                page.goto(results_url, wait_until="domcontentloaded", timeout=30_000)
-
-        # Wait for results page
-        page.wait_for_selector("#search-results", timeout=30_000)
-        page.wait_for_selector("article.full-docsum", timeout=30_000)
-
-        # Save HTML snapshot (similar concept to PubmedAfterSearch.html)
-        html = page.content()
-        save_html_path.write_text(html, encoding="utf-8")
-        print(f"Saved HTML: {save_html_path}")
-
-        data = scrape_pubmed_results(page, max_results=args.max_results)
-        out_json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"Saved JSON: {out_json_path}")
-
-        browser.close()
+    data = run_pubmed_scrape(
+        terms=terms,
+        headless=bool(args.headless),
+        slowmo=int(args.slowmo),
+        step_delay=int(args.step_delay),
+        max_results=int(args.max_results),
+        save_html=str(args.save_html) if args.save_html else None,
+        output_json=str(args.output) if args.output else None,
+        source=str(args.source),
+        local_home=str(args.local_home) if args.local_home else None,
+        pub_date_start=str(args.pub_date_start) if args.pub_date_start else None,
+        pub_date_end=str(args.pub_date_end) if args.pub_date_end else None,
+    )
+    print(json.dumps(data, indent=2, ensure_ascii=False))
 
     return 0
 
