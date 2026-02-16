@@ -1,13 +1,25 @@
 from __future__ import annotations
 
 import json
+import os
 import re
+import ssl
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 YEAR_RE = re.compile(r"\b(18|19|20)\d{2}\b")
+
+
+def _ssl_context():
+    """Use unverified context when DISABLE_SSL_VERIFY=1 (e.g. corporate proxy)."""
+    if os.getenv("DISABLE_SSL_VERIFY", "").lower() in ("1", "true", "yes"):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        return ctx
+    return None
 
 
 def _clean_text(s: str) -> str:
@@ -50,7 +62,7 @@ def _http_get_json(url: str, *, timeout_s: int = 30) -> Dict[str, Any]:
         },
         method="GET",
     )
-    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+    with urllib.request.urlopen(req, timeout=timeout_s, context=_ssl_context()) as resp:
         raw = resp.read().decode("utf-8", errors="replace")
     return json.loads(raw)
 

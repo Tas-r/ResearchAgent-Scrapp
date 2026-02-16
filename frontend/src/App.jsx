@@ -1,18 +1,96 @@
 import './App.css'
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+
+const SUGGESTIONS = [
+  'Find PubMed articles on Alzheimer\'s and aging',
+  'Search for studies on diabetes treatment 2020-2024',
+  'Get research on machine learning in healthcare',
+  'Papers about COVID-19 vaccine efficacy',
+]
+
+function tryParsePubMed(content) {
+  if (typeof content !== 'string') return null
+  let str = content.trim()
+  const codeBlock = str.match(/```(?:json)?\s*([\s\S]*?)```/)
+  if (codeBlock) str = codeBlock[1].trim()
+  const jsonMatch = str.match(/\{[\s\S]*\}/)
+  if (!jsonMatch) return null
+  try {
+    const data = JSON.parse(jsonMatch[0])
+    if (data?.results && Array.isArray(data.results)) {
+      return data
+    }
+    return null
+  } catch {
+    return null
+  }
+}
+
+function MessageContent({ content, role }) {
+  const pubmed = tryParsePubMed(content)
+
+  if (pubmed) {
+    return (
+      <div className="pubmed-results">
+        <div className="pubmed-meta">
+          <span><strong>{pubmed.total_results}</strong> results</span>
+          {pubmed.query && <span>Query: {pubmed.query}</span>}
+        </div>
+        <div className="pubmed-cards">
+          {pubmed.results.map((r, i) => (
+            <article key={r.pmid || i} className="pubmed-card">
+              <h3 className="pubmed-card-title">
+                <a href={r.url} target="_blank" rel="noopener noreferrer">
+                  {r.title || 'Untitled'}
+                </a>
+              </h3>
+              {r.authors && (
+                <p className="pubmed-card-meta">{r.authors}</p>
+              )}
+              {r.journal_citation && (
+                <p className="pubmed-card-citation">{r.journal_citation}</p>
+              )}
+              {r.snippet && (
+                <p className="pubmed-card-snippet">{r.snippet}</p>
+              )}
+              <a
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pubmed-card-link"
+              >
+                View on PubMed →
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  return <div className="message-text">{content}</div>
+}
 
 function App() {
-  const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hi! Ask me anything. If you ask for PubMed results, I will return JSON.' },
-  ])
+  const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const chatEndRef = useRef(null)
 
   const canSend = useMemo(() => input.trim().length > 0 && !loading, [input, loading])
+  const showWelcome = messages.length === 0 && !loading
 
-  async function send() {
-    const text = input.trim()
+  const scrollToBottom = useCallback(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, loading, scrollToBottom])
+
+  async function send(userText) {
+    const text = (typeof userText === 'string' ? userText : input.trim()).trim()
     if (!text || loading) return
     setError('')
     setLoading(true)
@@ -25,7 +103,9 @@ function App() {
       const resp = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: nextMessages.filter((m) => m.role === 'user' || m.role === 'assistant') }),
+        body: JSON.stringify({
+          messages: nextMessages.filter((m) => m.role === 'user' || m.role === 'assistant'),
+        }),
       })
       const data = await resp.json()
       if (!resp.ok) {
@@ -34,6 +114,7 @@ function App() {
       setMessages(data.messages || nextMessages)
     } catch (e) {
       setError(String(e?.message || e))
+      setMessages((prev) => prev.slice(0, -1))
     } finally {
       setLoading(false)
     }
@@ -47,42 +128,95 @@ function App() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: 24 }}>
-      <h2 style={{ marginTop: 0 }}>Research Agent (Django + React)</h2>
+    <div className="app">
+      <header className="header">
+        <div className="header-inner">
+          <div className="header-icon">🔬</div>
+          <div className="header-text">
+            <h1>Research Agent</h1>
+            <p>AI-powered PubMed search — ask for articles and get structured results</p>
+          </div>
+        </div>
+      </header>
 
-      <div
-        style={{
-          border: '1px solid rgba(255,255,255,0.2)',
-          borderRadius: 12,
-          padding: 16,
-          minHeight: 420,
-          background: 'rgba(0,0,0,0.15)',
-        }}
-      >
+      <main className="chat-area">
+        {showWelcome && (
+          <div className="welcome-state">
+            <div className="welcome-icon">🔬</div>
+            <h2>How can I help?</h2>
+            <p>
+              Ask me to find research articles from PubMed. I'll search and return
+              structured results with titles, authors, citations, and links.
+            </p>
+            <div className="suggestions">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  className="suggestion-chip"
+                  onClick={() => send(s)}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {messages.map((m, idx) => (
-          <div key={idx} style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 4 }}>{m.role}</div>
-            <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{m.content}</pre>
+          <div key={idx} className={`message ${m.role}`}>
+            <div className="message-avatar">
+              {m.role === 'assistant' ? 'AI' : 'You'}
+            </div>
+            <div className="message-body">
+              <div className="message-content">
+                <MessageContent content={m.content} role={m.role} />
+              </div>
+            </div>
           </div>
         ))}
-        {loading && <div style={{ opacity: 0.8 }}>Thinking…</div>}
-      </div>
 
-      <div style={{ marginTop: 16 }}>
-        <textarea
-          rows={3}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          placeholder="Type a message. Example: Give me PubMed results for alzheimers and aging between 2015 and 2018, max 5"
-          style={{ width: '100%', padding: 12, borderRadius: 12 }}
-        />
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 12 }}>
-          <button onClick={send} disabled={!canSend}>
-            Send
+        {loading && (
+          <div className="message assistant">
+            <div className="message-avatar">AI</div>
+            <div className="message-body">
+              <div className="loading-indicator">
+                <div className="loading-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <span className="loading-text">Searching PubMed…</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div ref={chatEndRef} />
+      </main>
+
+      <div className="input-area">
+        <div className="input-wrapper">
+          <textarea
+            className="input-field"
+            rows={1}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKeyDown}
+            placeholder="Ask for PubMed articles, e.g. studies on diabetes 2020-2024, max 10"
+            disabled={loading}
+          />
+          <button
+            type="button"
+            className="send-btn"
+            onClick={() => send()}
+            disabled={!canSend}
+            aria-label="Send"
+          >
+            →
           </button>
-          {error && <div style={{ color: '#ff6b6b' }}>{error}</div>}
         </div>
+        {error && <div className="error-banner">{error}</div>}
       </div>
     </div>
   )

@@ -1,5 +1,7 @@
 import json
+import traceback
 
+from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -43,7 +45,13 @@ def chat(request):
     try:
         assistant_text = chat_with_tools(messages=normalized, model=model)
     except Exception as e:
-        return JsonResponse({"error": "backend_error", "message": str(e)}, status=500)
+        tb = traceback.format_exc()
+        if settings.DEBUG:
+            print(tb)
+        return JsonResponse(
+            {"error": "backend_error", "message": str(e), "traceback": tb if settings.DEBUG else None},
+            status=500,
+        )
 
     assistant_msg = {"role": "assistant", "content": assistant_text}
     return JsonResponse(

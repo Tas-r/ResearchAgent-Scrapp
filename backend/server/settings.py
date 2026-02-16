@@ -13,8 +13,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load .env from backend directory (parent of server/)
+load_dotenv(BASE_DIR / ".env")
+load_dotenv()  # fallback: cwd when running manage.py from backend/
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +42,10 @@ CORS_ALLOWED_ORIGINS = [
 # OpenAI config (set in environment)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+
+# SSL: set DISABLE_SSL_VERIFY=1 only for dev behind corporate proxy/firewall
+# WARNING: Do not use in production
+DISABLE_SSL_VERIFY = os.getenv("DISABLE_SSL_VERIFY", "").lower() in ("1", "true", "yes")
 
 
 # Application definition

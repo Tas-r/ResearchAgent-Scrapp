@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any, Dict, List, Optional
 
+import httpx
 from django.conf import settings
 from openai import OpenAI
 
@@ -21,7 +22,10 @@ For other questions, answer normally.
 def _get_client() -> OpenAI:
     if not getattr(settings, "OPENAI_API_KEY", ""):
         raise RuntimeError("Missing OPENAI_API_KEY in backend environment.")
-    return OpenAI(api_key=settings.OPENAI_API_KEY)
+    kwargs = {"api_key": settings.OPENAI_API_KEY}
+    if getattr(settings, "DISABLE_SSL_VERIFY", False):
+        kwargs["http_client"] = httpx.Client(verify=False)
+    return OpenAI(**kwargs)
 
 
 def chat_with_tools(
